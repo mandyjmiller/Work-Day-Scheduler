@@ -23,9 +23,16 @@ function createTimeBlocks() {
   }
 }
 
-// Display hour blocks
+// Display hour blocks -- add formatting depending on past / present / future
 function getTimeBlockClass(hour) {
-  var currentHour = dayjs().hour();
+  var currentHour = dayjs().hour()
+  if (hour < currentHour) 
+  return "col-10 past"; // col-10 this column is assigned 10 units width compared to 1 unit width for time and 1 unit width for save
+  else if (hour == currentHour)
+  return "col-10 present";
+  else
+  return "col-10 future";
 }
 
+// Runs the function to create time blocks on load page
 createTimeBlocks();
